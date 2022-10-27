@@ -49,22 +49,18 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (NotFoundHttpException $e, Request $request) {
-            dd($e);
             return response()->json([
-                'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => 'Typing error'
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+                'code' => Response::HTTP_NOT_FOUND,
+                'message' => 'Nothing Found'
+            ], Response::HTTP_NOT_FOUND);
         });
         $this->renderable(function (ValidationException $e, Request $request) {
-            DD($e);
             return response()->json([
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => 'Typing error'
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         });
-        
         $this->renderable(function (Throwable $e, Request $request) {
-            dd($e);
             return response()->json([
                 'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => 'Internal Server Error'
