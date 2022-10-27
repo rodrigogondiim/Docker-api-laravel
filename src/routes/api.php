@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{ParticipantController, ProductController};
 
+Route::get('', function(){
+    return 'Okay, api is working!';
+});
+
 Route::prefix('participant')->controller(ParticipantController::class)->group(function(){
     Route::get('', 'index');
     Route::post('', 'store');

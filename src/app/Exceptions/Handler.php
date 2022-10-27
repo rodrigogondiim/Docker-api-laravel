@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\{Response, Request};
 use Illuminate\Validation\ValidationException;
@@ -54,10 +55,16 @@ class Handler extends ExceptionHandler
                 'message' => 'Nothing Found'
             ], Response::HTTP_NOT_FOUND);
         });
+        $this->renderable(function (QueryException $e, Request $request) {
+            return response()->json([
+                'code' => Response::HTTP_NOT_FOUND,
+                'message' => 'Nothing Found'
+            ], Response::HTTP_NOT_FOUND);
+        });
         $this->renderable(function (ValidationException $e, Request $request) {
             return response()->json([
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => 'Typing error'
+                'message' => 'Unprocessable'
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         });
         $this->renderable(function (Throwable $e, Request $request) {
