@@ -12,5 +12,6 @@ class Participant extends Model
 
     protected $fillable = ['name', 'incoins'];
     protected $keyType = 'uuid';
+    protected $primaryKey = 'id';
 
 }

@@ -20,5 +20,6 @@ class Product extends Model
         'suggested'
     ];
     protected $keyType = 'uuid';
+    protected $primaryKey = 'id';
 
 }
