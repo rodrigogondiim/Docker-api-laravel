@@ -52,19 +52,19 @@ class Handler extends ExceptionHandler
         $this->renderable(function (NotFoundHttpException $e, Request $request) {
             return response()->json([
                 'code' => Response::HTTP_NOT_FOUND,
-                'message' => 'Nothing Found'
+                'message' => 'Nothing Found.'
             ], Response::HTTP_NOT_FOUND);
         });
         $this->renderable(function (QueryException $e, Request $request) {
             return response()->json([
                 'code' => Response::HTTP_NOT_FOUND,
-                'message' => 'Nothing Found'
+                'message' => 'Query error.'
             ], Response::HTTP_NOT_FOUND);
         });
         $this->renderable(function (ValidationException $e, Request $request) {
             return response()->json([
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => 'Unprocessable'
+                'message' => 'Unprocessable.'
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         });
         $this->renderable(function (Throwable $e, Request $request) {

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use Illuminate\Http\{JsonResponse, Request, Response};
+use App\Http\Requests\{StoreProductRequest, UpdateProductRequest};
+use Illuminate\Http\{JsonResponse, Response};
 
 class ProductController extends Controller
 {
@@ -24,7 +23,7 @@ class ProductController extends Controller
         $cover = $request->file('cover');
         $payload = $request->except('cover');
         if($cover?->isValid() and isset($cover))
-            $payload = array_merge($payload, ['cover' => $cover->store('products')]);
+            $payload = array_merge($payload, ['cover' => $cover->store('')]);
         
         $product = Product::create($payload);
         return response()->json($product);
@@ -35,7 +34,7 @@ class ProductController extends Controller
         $payload = $request->validated();
         $cover = $request->file('cover');
         if($cover?->isValid() and isset($cover))
-            $payload = array_merge($payload, ['cover' => $cover->store('products')]);
+            $payload = array_merge($payload, ['cover' => $cover->store('')]);
         
         $product->update($payload);
         return response()->json($product);
