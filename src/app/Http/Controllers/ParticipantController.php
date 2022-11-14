@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Participant;
-use App\Http\Requests\StoreParticipantRequest;
-use App\Http\Requests\UpdateParticipantRequest;
-use Illuminate\Http\{JsonResponse, Request, Response};
+use App\Http\Requests\{StoreParticipantRequest, UpdateParticipantRequest};
+use Illuminate\Http\{JsonResponse, Response};
 
 class ParticipantController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(Participant::all());
+        return response()->json(Participant::select('id', 'name', 'incoins')->get());
     }
 
     public function store(StoreParticipantRequest $request): JsonResponse
